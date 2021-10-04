@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/mapaFragment">
+    <fragment
+        android:id="@+id/nav_contrato"
+        android:name="com.constante.inmobiliariaconstante.ui.contratos.ContratoFragment"
+        android:label="@string/Contratos"
+        tools:layout="@layout/contrato_fragment" >
+        <action
+            android:id="@+id/action_nav_contrato_to_contratoDetalle"
+            app:destination="@id/contratoDetalle" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_inmueble"
+        android:name="com.constante.inmobiliariaconstante.ui.Inmueble.InmuebleFragment"
+        android:label="@string/Inmuebles"
+        tools:layout="@layout/inmueble_fragment" >
+        <action
+            android:id="@+id/action_nav_inmueble_to_inmuebleDetalle"
+            app:destination="@id/inmuebleDetalle" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_inquilino"
+        android:name="com.constante.inmobiliariaconstante.ui.inquilinos.InquilinoFragment"
+        android:label="@string/Inquilinos"
+        tools:layout="@layout/inquilino_fragment" >
+        <action
+            android:id="@+id/action_nav_inquilino_to_inquilinoDetalle"
+            app:destination="@id/inquilinoDetalle" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.constante.inmobiliariaconstante.ui.logout.LogoutFragment"
+        android:label="Cerrar Sesion"
+        tools:layout="@layout/logout_fragment" />
+    <fragment
+        android:id="@+id/nav_perfil"
+        android:name="com.constante.inmobiliariaconstante.ui.perfil.PerfilFragment"
+        android:label="@string/Perfil"
+        tools:layout="@layout/perfil_fragment" />
+    <fragment
+        android:id="@+id/inmuebleDetalle"
+        android:name="com.constante.inmobiliariaconstante.ui.Inmueble.InmuebleDetalle"
+        android:label="Detalle del inmueble"
+        tools:layout="@layout/inmueble_detalle_fragment" >
+        <action
+            android:id="@+id/action_inmuebleDetalle_to_nav_inmueble"
+            app:destination="@id/nav_inmueble" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapaFragment"
+        android:name="com.constante.inmobiliariaconstante.ui.inicio.MapaFragment"
+        android:label="Mapa ubicacion Inmobiliaria"
+        tools:layout="@layout/fragment_mapa" />
+    <fragment
+        android:id="@+id/inquilinoDetalle"
+        android:name="com.constante.inmobiliariaconstante.ui.inquilinos.InquilinoDetalle"
+        android:label="Detalle de inquilino"
+        tools:layout="@layout/inquilino_detalle_fragment" >
+        <action
+            android:id="@+id/action_inquilinoDetalle_to_nav_inquilino"
+            app:destination="@id/nav_inquilino" />
+    </fragment>
+    <fragment
+        android:id="@+id/contratoDetalle"
+        android:name="com.constante.inmobiliariaconstante.ui.contratos.ContratoDetalle"
+        android:label="Detalle de contrato"
+        tools:layout="@layout/contrato_detalle_fragment" >
+        <action
+            android:id="@+id/action_contratoDetalle_to_nav_contrato"
+            app:destination="@id/nav_contrato" />
+        <action
+            android:id="@+id/action_contratoDetalle_to_pagosFragment"
+            app:destination="@id/pagosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pagosFragment"
+        android:name="com.constante.inmobiliariaconstante.ui.pagos.PagosFragment"
+        android:label="Pagos de contrato"
+        tools:layout="@layout/pagos_fragment" >
+        <action
+            android:id="@+id/action_pagosFragment_to_contratoDetalle"
+            app:destination="@id/contratoDetalle" />
+    </fragment>
+</navigation>
