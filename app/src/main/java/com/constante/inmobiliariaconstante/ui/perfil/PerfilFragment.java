@@ -49,12 +49,12 @@ public class PerfilFragment extends Fragment {
             @Override
             public void onChanged(Propietario propietario) {
                 binding.EtApellido.setText(propietario.getApellido());
-                binding.EtCodigo.setText(String.valueOf(propietario.getId()));
+                binding.EtCodigo.setText(String.valueOf(propietario.getIdPropietario()));
                 binding.EtDni.setText(propietario.getDni().toString());
                 binding.EtEmail.setText(propietario.getEmail());
                 binding.EtNombre.setText(propietario.getNombre());
                 binding.EtTelefono.setText(propietario.getTelefono());
-                binding.eTContraseA.setText(propietario.getContraseña());
+                binding.eTContraseA.setText(propietario.getClave());
             }
         });
         mViewModel.getEditables().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
@@ -91,10 +91,10 @@ public class PerfilFragment extends Fragment {
             public void onClick(View view) {
                 Propietario p = new Propietario();
                 p.setApellido(binding.EtApellido.getText().toString());
-                p.setContraseña(binding.eTContraseA.getText().toString());
+                p.setClave(binding.eTContraseA.getText().toString());
                 p.setDni(Long.parseLong(binding.EtDni.getText().toString()));
                 p.setEmail(binding.EtEmail.getText().toString());
-                p.setId(Integer.parseInt(binding.EtCodigo.getText().toString()));
+                p.setIdPropietario(Integer.parseInt(binding.EtCodigo.getText().toString()));
                 p.setTelefono(binding.EtTelefono.getText().toString());
                 p.setNombre(binding.EtNombre.getText().toString());
                 mViewModel.modificarDatos(p);

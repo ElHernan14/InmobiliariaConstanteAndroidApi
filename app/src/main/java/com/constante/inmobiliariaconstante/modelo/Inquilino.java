@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Inquilino implements Serializable {
 
     private int idInquilino;
-    private Long DNI;
+    private Long dni;
     private String nombre;
     private String apellido;
     private String lugarDeTrabajo;
@@ -16,14 +16,14 @@ public class Inquilino implements Serializable {
 
     public Inquilino() {}
 
-    public Inquilino(int idInquilino, Long DNI, String nombre, String apellido, String lugarDeTrabajo, String email, String telefono, String nombreGarante, String telefonoGarante) {
+    public Inquilino(int idInquilino, Long dni, String nombre, String apellido, String lugarDeTrabajo, String email, String telefono, String nombreGarante, String telefonoGarante) {
         this.idInquilino = idInquilino;
-        this.DNI = DNI;
-        this.nombre = nombre;
-        this.apellido = apellido;
+        dni = dni;
+        nombre = nombre;
+        apellido = apellido;
         this.lugarDeTrabajo = lugarDeTrabajo;
-        this.email = email;
-        this.telefono = telefono;
+        email = email;
+        telefono = telefono;
         this.nombreGarante = nombreGarante;
         this.telefonoGarante = telefonoGarante;
     }
@@ -36,12 +36,12 @@ public class Inquilino implements Serializable {
         this.idInquilino = idInquilino;
     }
 
-    public Long getDNI() {
-        return DNI;
+    public Long getDni() {
+        return dni;
     }
 
-    public void setDNI(Long DNI) {
-        this.DNI = DNI;
+    public void setDni(Long dni) {
+        dni = dni;
     }
 
     public String getNombre() {
@@ -49,7 +49,7 @@ public class Inquilino implements Serializable {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        nombre = nombre;
     }
 
     public String getApellido() {
@@ -57,7 +57,7 @@ public class Inquilino implements Serializable {
     }
 
     public void setApellido(String apellido) {
-        this.apellido = apellido;
+        apellido = apellido;
     }
 
     public String getLugarDeTrabajo() {
@@ -73,7 +73,7 @@ public class Inquilino implements Serializable {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        email = email;
     }
 
     public String getTelefono() {
@@ -81,7 +81,7 @@ public class Inquilino implements Serializable {
     }
 
     public void setTelefono(String telefono) {
-        this.telefono = telefono;
+        telefono = telefono;
     }
 
     public String getNombreGarante() {

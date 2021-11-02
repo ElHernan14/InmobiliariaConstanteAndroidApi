@@ -1,15 +1,23 @@
 package com.constante.inmobiliariaconstante;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.load.model.LazyHeaders;
 import com.constante.inmobiliariaconstante.modelo.Propietario;
 import com.constante.inmobiliariaconstante.request.ApiClient;
+import com.constante.inmobiliariaconstante.request.ApiRetroFit;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -23,10 +31,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.constante.inmobiliariaconstante.databinding.ActivityMainBinding;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    private SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
+        sp = ApiRetroFit.conectar(this);
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         inicializar(navigationView);
@@ -60,15 +73,38 @@ public class MainActivity extends AppCompatActivity {
 
     private void inicializar(NavigationView navigationView){
         View header = navigationView.getHeaderView(0);
-        ApiClient api = ApiClient.getApi();
-        Propietario p = api.obtenerUsuarioActual();
-            ImageView foto = header.findViewById(R.id.IvFotoPerfil);
-            TextView usuario = header.findViewById(R.id.TvNombrePropietario);
-            TextView correo = header.findViewById(R.id.TvCorreoPropietario);
-            foto.setImageResource(p.getAvatar());
-            usuario.setText(p.getNombre());
-            correo.setText(p.getEmail());
+        ImageView foto = header.findViewById(R.id.IvFotoPerfil);
+        TextView usuario = header.findViewById(R.id.TvNombrePropietario);
+        TextView correo = header.findViewById(R.id.TvCorreoPropietario);
+        String token = sp.getString("Token", "Sin dato");
+        Call<Propietario> propietarioCall = ApiRetroFit.getMyApiClient().Perfil(token);
+        propietarioCall.enqueue(new Callback<Propietario>() {
+            @Override
+            public void onResponse(Call<Propietario> call, Response<Propietario> response) {
+                if (response.isSuccessful()){
+                    Propietario p = response.body();
+                    GlideUrl url = new GlideUrl(ApiRetroFit.getURLBASE()+p.getAvatar(), new LazyHeaders.Builder()
+                            .addHeader("User-Agent", "your-user-agent")
+                            .build());
+                    Glide.with(MainActivity.this)//contexto
+                            .load(url)//url de la imagen
+                            .error(R.drawable.ic_launcher_background)
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)// guarda en el cache
+                            .encodeFormat(Bitmap.CompressFormat.JPEG)
+                            .into(foto);
+                    //foto.setImageResource("http://192.168.0.5:45457/"+p.getAvatar());
+                    usuario.setText(p.getNombre());
+                    correo.setText(p.getEmail());
+                }else{
+                    Toast.makeText(MainActivity.this,"PERFIL NOT SUCCESSFUL:",Toast.LENGTH_LONG);
+                }
+            }
 
+            @Override
+            public void onFailure(Call<Propietario> call, Throwable t) {
+                Toast.makeText(MainActivity.this,"ERROR CARGAR PERFIL: "+t.getMessage(),Toast.LENGTH_LONG);
+            }
+        });
     }
 
     @Override

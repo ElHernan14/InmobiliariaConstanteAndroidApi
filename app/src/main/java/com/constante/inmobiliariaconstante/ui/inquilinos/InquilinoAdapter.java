@@ -22,6 +22,7 @@ import com.constante.inmobiliariaconstante.R;
 import com.constante.inmobiliariaconstante.modelo.Inmueble;
 import com.constante.inmobiliariaconstante.modelo.Inquilino;
 import com.constante.inmobiliariaconstante.request.ApiClient;
+import com.constante.inmobiliariaconstante.request.ApiRetroFit;
 import com.constante.inmobiliariaconstante.ui.Inmueble.InmuebleAdapter;
 
 import java.util.ArrayList;
@@ -31,14 +32,12 @@ public class InquilinoAdapter extends RecyclerView.Adapter<InquilinoAdapter.View
     private View root;
     private Context context;
     private LayoutInflater layoutInflater;
-    private ApiClient apiClient;
 
     public InquilinoAdapter(ArrayList<Inmueble> inmuebles, View root) {
         this.inmuebles = inmuebles;
         this.root = root;
         this.layoutInflater = LayoutInflater.from(root.getContext());
         this.context = root.getContext();
-        this.apiClient = ApiClient.getApi();
     }
 
     @NonNull
@@ -51,9 +50,10 @@ public class InquilinoAdapter extends RecyclerView.Adapter<InquilinoAdapter.View
     @Override
     public void onBindViewHolder(@NonNull InquilinoAdapter.ViewHolder holder, int position) {
         Log.e("llegue", "LLEGUE ACAA ESTOYY");
+
         Inmueble inmueble = inmuebles.get(position);
         Glide.with(root.getContext())
-                .load(inmuebles.get(position).getImagen())
+                .load(ApiRetroFit.getURLBASE()+inmuebles.get(position).getImagen())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.imagen);
         holder.direccion.setText(inmuebles.get(position).getDireccion());
@@ -61,9 +61,8 @@ public class InquilinoAdapter extends RecyclerView.Adapter<InquilinoAdapter.View
             @Override
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
-                Inquilino i = apiClient.obtenerInquilino(inmueble);
-                bundle.putSerializable("inquilino",i);
-                Navigation.findNavController(root).navigate(R.id.inquilinoDetalle,bundle);
+                bundle.putSerializable("Inmueble",inmueble);
+                Navigation.findNavController(root).navigate(R.id.inquilinosRV,bundle);
             }
         });
     }

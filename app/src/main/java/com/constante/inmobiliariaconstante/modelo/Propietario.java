@@ -1,37 +1,39 @@
 package com.constante.inmobiliariaconstante.modelo;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.Objects;
 
 public class Propietario implements Serializable {
 
-    private int id;
+    private int idPropietario;
     private Long dni;
     private String nombre;
     private String apellido;
     private String email;
-    private String contraseña;
+    private String clave;
     private String telefono;
-    private int avatar;
+    private String avatar;
 
     public Propietario(){}
-    public Propietario(int id, Long dni, String nombre, String apellido, String email, String contraseña, String telefono, int avatar) {
-        this.id = id;
+
+    public Propietario(int idPropietario, Long dni, String nombre, String apellido, String email, String clave, String telefono, String avatar) {
+        this.idPropietario = idPropietario;
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
-        this.contraseña = contraseña;
+        this.clave = clave;
         this.telefono = telefono;
-        this.avatar=avatar;
+        this.avatar = avatar;
     }
 
-    public int getId() {
-        return id;
+    public int getIdPropietario() {
+        return idPropietario;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdPropietario(int idPropietario) {
+        this.idPropietario = idPropietario;
     }
 
     public Long getDni() {
@@ -66,12 +68,12 @@ public class Propietario implements Serializable {
         this.email = email;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getClave() {
+        return clave;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 
     public String getTelefono() {
@@ -82,11 +84,11 @@ public class Propietario implements Serializable {
         this.telefono = telefono;
     }
 
-    public int getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(int avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 
@@ -95,11 +97,11 @@ public class Propietario implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Propietario that = (Propietario) o;
-        return id == that.id;
+        return idPropietario == that.idPropietario;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(idPropietario);
     }
 }

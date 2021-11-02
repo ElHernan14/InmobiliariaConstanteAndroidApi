@@ -20,6 +20,7 @@ import com.constante.inmobiliariaconstante.R;
 import com.constante.inmobiliariaconstante.databinding.InmuebleDetalleFragmentBinding;
 import com.constante.inmobiliariaconstante.databinding.InmuebleFragmentBinding;
 import com.constante.inmobiliariaconstante.modelo.Inmueble;
+import com.constante.inmobiliariaconstante.request.ApiRetroFit;
 
 public class InmuebleDetalle extends Fragment {
 
@@ -46,13 +47,13 @@ public class InmuebleDetalle extends Fragment {
             @Override
             public void onChanged(Inmueble inmueble) {
                 binding.TVAmbientes.setText(String.valueOf(inmueble.getAmbientes()));
-                binding.TVCodigo.setText(String.valueOf(inmueble.getIdInmueble()));
+                binding.TVCodigo.setText(String.valueOf(inmueble.getId()));
                 binding.TVDireccionDetalles.setText(inmueble.getDireccion());
                 binding.TVPrecioDetalles.setText(String.valueOf(inmueble.getPrecio()));
                 binding.TVTipo.setText(inmueble.getTipo());
                 binding.TVUso.setText(inmueble.getUso());
                 Glide.with(root.getContext())
-                        .load(inmueble.getImagen())
+                        .load(ApiRetroFit.getURLBASE()+inmueble.getImagen())
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(binding.imageView);
                 binding.CBDisponible.setChecked(inmueble.isEstado());

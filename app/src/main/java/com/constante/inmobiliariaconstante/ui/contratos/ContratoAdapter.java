@@ -2,6 +2,7 @@ package com.constante.inmobiliariaconstante.ui.contratos;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.constante.inmobiliariaconstante.modelo.Contrato;
 import com.constante.inmobiliariaconstante.modelo.Inmueble;
 import com.constante.inmobiliariaconstante.modelo.Inquilino;
 import com.constante.inmobiliariaconstante.request.ApiClient;
+import com.constante.inmobiliariaconstante.request.ApiRetroFit;
 
 
 import java.util.ArrayList;
@@ -50,17 +52,17 @@ public class ContratoAdapter extends RecyclerView.Adapter<ContratoAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Inmueble inmueble = inmuebles.get(position);
         Glide.with(root.getContext())
-                .load(inmuebles.get(position).getImagen())
+                .load(ApiRetroFit.getURLBASE() +inmuebles.get(position).getImagen())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.imagen);
         holder.direccion.setText(inmuebles.get(position).getDireccion());
         holder.ver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.e("llegue", "EVENTO BOTON CONTRATOADAPTER");
                 Bundle bundle = new Bundle();
-                Contrato c = apiClient.obtenerContratoVigente(inmueble);
-                bundle.putSerializable("contrato",c);
-                Navigation.findNavController(root).navigate(R.id.contratoDetalle,bundle);
+                bundle.putSerializable("Inmueble",inmueble);
+                Navigation.findNavController(root).navigate(R.id.contratoRV,bundle);
             }
         });
     }

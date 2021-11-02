@@ -55,7 +55,7 @@ public class InquilinoFragment extends Fragment {
                 binding.RVInquilinos.setAdapter(adapter);
             }
         });
-        mViewModel.obtenerInquilinos();
+        mViewModel.obtenerInmuebles();
         return root;
     }
 

@@ -7,11 +7,11 @@
     <fragment
         android:id="@+id/nav_contrato"
         android:name="com.constante.inmobiliariaconstante.ui.contratos.ContratoFragment"
-        android:label="@string/Contratos"
+        android:label="Inmuebles con contratos"
         tools:layout="@layout/contrato_fragment" >
         <action
-            android:id="@+id/action_nav_contrato_to_contratoDetalle"
-            app:destination="@id/contratoDetalle" />
+            android:id="@+id/action_nav_contrato_to_contratoRV"
+            app:destination="@id/contratoRV" />
     </fragment>
     <fragment
         android:id="@+id/nav_inmueble"
@@ -25,11 +25,11 @@
     <fragment
         android:id="@+id/nav_inquilino"
         android:name="com.constante.inmobiliariaconstante.ui.inquilinos.InquilinoFragment"
-        android:label="@string/Inquilinos"
+        android:label="Inmuebles con Inquilinos"
         tools:layout="@layout/inquilino_fragment" >
         <action
-            android:id="@+id/action_nav_inquilino_to_inquilinoDetalle"
-            app:destination="@id/inquilinoDetalle" />
+            android:id="@+id/action_nav_inquilino_to_inquilinosRV"
+            app:destination="@id/inquilinosRV" />
     </fragment>
     <fragment
         android:id="@+id/nav_logout"
@@ -56,33 +56,33 @@
         android:label="Mapa ubicacion Inmobiliaria"
         tools:layout="@layout/fragment_mapa" />
     <fragment
-        android:id="@+id/inquilinoDetalle"
-        android:name="com.constante.inmobiliariaconstante.ui.inquilinos.InquilinoDetalle"
-        android:label="Detalle de inquilino"
-        tools:layout="@layout/inquilino_detalle_fragment" >
-        <action
-            android:id="@+id/action_inquilinoDetalle_to_nav_inquilino"
-            app:destination="@id/nav_inquilino" />
-    </fragment>
-    <fragment
-        android:id="@+id/contratoDetalle"
-        android:name="com.constante.inmobiliariaconstante.ui.contratos.ContratoDetalle"
-        android:label="Detalle de contrato"
-        tools:layout="@layout/contrato_detalle_fragment" >
-        <action
-            android:id="@+id/action_contratoDetalle_to_nav_contrato"
-            app:destination="@id/nav_contrato" />
-        <action
-            android:id="@+id/action_contratoDetalle_to_pagosFragment"
-            app:destination="@id/pagosFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/pagosFragment"
         android:name="com.constante.inmobiliariaconstante.ui.pagos.PagosFragment"
         android:label="Pagos de contrato"
         tools:layout="@layout/pagos_fragment" >
         <action
-            android:id="@+id/action_pagosFragment_to_contratoDetalle"
-            app:destination="@id/contratoDetalle" />
+            android:id="@+id/action_pagosFragment_to_contratoRV"
+            app:destination="@id/contratoRV" />
+    </fragment>
+    <fragment
+        android:id="@+id/inquilinosRV"
+        android:name="com.constante.inmobiliariaconstante.ui.inquilinos.InquilinosRV"
+        android:label="Inquilino Actual"
+        tools:layout="@layout/inquilinos_r_v_fragment" >
+        <action
+            android:id="@+id/action_inquilinosRV_to_nav_inquilino"
+            app:destination="@id/nav_inquilino" />
+    </fragment>
+    <fragment
+        android:id="@+id/contratoRV"
+        android:name="com.constante.inmobiliariaconstante.ui.contratos.ContratoRV"
+        android:label="Contratos del propietario"
+        tools:layout="@layout/contrato_r_v_fragment" >
+        <action
+            android:id="@+id/action_contratoRV_to_nav_contrato"
+            app:destination="@id/nav_contrato" />
+        <action
+            android:id="@+id/action_contratoRV_to_pagosFragment"
+            app:destination="@id/pagosFragment" />
     </fragment>
 </navigation>

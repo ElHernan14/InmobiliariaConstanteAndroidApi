@@ -4,36 +4,36 @@ import java.io.Serializable;
 
 public class Pago implements Serializable {
 
-    private int idPago;
-    private int numero;
+    private int id;
+    private int numeroDePago;
     private Contrato contrato;
-    private double importe;
+    private double monto;
     private String fechaDePago;
 
     public Pago() {}
 
-    public Pago(int idPago, int numero, Contrato contrato, double importe, String fechaDePago) {
-        this.idPago = idPago;
-        this.numero = numero;
+    public Pago(int id, int numeroDePago, Contrato contrato, double monto, String fechaDePago) {
+        id = id;
+        numeroDePago = numeroDePago;
         this.contrato = contrato;
-        this.importe = importe;
-        this.fechaDePago = fechaDePago;
+        monto = monto;
+        fechaDePago = fechaDePago;
     }
 
-    public int getIdPago() {
-        return idPago;
+    public int getId() {
+        return id;
     }
 
-    public void setIdPago(int idPago) {
-        this.idPago = idPago;
+    public void setId(int id) {
+        id = id;
     }
 
-    public int getNumero() {
-        return numero;
+    public int getNumeroDePago() {
+        return numeroDePago;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public void setNumeroDePago(int numeroDePago) {
+        numeroDePago = numeroDePago;
     }
 
     public Contrato getContrato() {
@@ -44,12 +44,12 @@ public class Pago implements Serializable {
         this.contrato = contrato;
     }
 
-    public double getImporte() {
-        return importe;
+    public double getMonto() {
+        return monto;
     }
 
-    public void setImporte(double importe) {
-        this.importe = importe;
+    public void setMonto(double monto) {
+        monto = monto;
     }
 
     public String getFechaDePago() {
@@ -57,6 +57,6 @@ public class Pago implements Serializable {
     }
 
     public void setFechaDePago(String fechaDePago) {
-        this.fechaDePago = fechaDePago;
+        fechaDePago = fechaDePago;
     }
 }

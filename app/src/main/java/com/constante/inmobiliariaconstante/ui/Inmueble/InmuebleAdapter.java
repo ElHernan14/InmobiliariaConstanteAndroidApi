@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.constante.inmobiliariaconstante.R;
 import com.constante.inmobiliariaconstante.modelo.Inmueble;
+import com.constante.inmobiliariaconstante.request.ApiRetroFit;
 
 import java.util.ArrayList;
 
@@ -44,7 +45,7 @@ public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.ViewHo
         Log.e("llegue", "LLEGUE ACAA ESTOYY VIEWHOLDERR");
         Inmueble i = inmuebles.get(position);
         Glide.with(root.getContext())
-                .load(inmuebles.get(position).getImagen())
+                .load(ApiRetroFit.getURLBASE()+inmuebles.get(position).getImagen())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.imagen);
         holder.tvDireccion.setText(inmuebles.get(position).getDireccion());

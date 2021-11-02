@@ -21,14 +21,12 @@ public class PagosAdapter extends RecyclerView.Adapter<PagosAdapter.ViewHolder>{
     private View root;
     private Context context;
     private LayoutInflater layoutInflater;
-    private ApiClient apiClient;
 
     public PagosAdapter(ArrayList<Pago> pagos, View root) {
         this.pagos = pagos;
         this.root = root;
         this.layoutInflater = LayoutInflater.from(root.getContext());
         this.context = root.getContext();
-        this.apiClient = ApiClient.getApi();
     }
 
     @NonNull
@@ -41,11 +39,11 @@ public class PagosAdapter extends RecyclerView.Adapter<PagosAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Pago pago = pagos.get(position);
-        holder.codigo.setText(String.valueOf(pago.getIdPago()));
+        holder.codigo.setText(String.valueOf(pago.getId()));
         holder.codContrato.setText(String.valueOf(pago.getContrato().getIdContrato()));
         holder.fechaPago.setText(pago.getFechaDePago());
-        holder.importe.setText(String.valueOf(pago.getImporte()));
-        holder.numero.setText(String.valueOf(pago.getNumero()));
+        holder.importe.setText(String.valueOf(pago.getMonto()));
+        holder.numero.setText(String.valueOf(pago.getNumeroDePago()));
     }
 
     @Override

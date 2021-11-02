@@ -1,32 +1,25 @@
 package com.constante.inmobiliariaconstante.ui.contratos;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.constante.inmobiliariaconstante.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+
 import com.constante.inmobiliariaconstante.databinding.ContratoFragmentBinding;
-import com.constante.inmobiliariaconstante.databinding.InmuebleFragmentBinding;
 import com.constante.inmobiliariaconstante.modelo.Inmueble;
-import com.constante.inmobiliariaconstante.ui.Inmueble.InmuebleAdapter;
-import com.constante.inmobiliariaconstante.ui.Inmueble.InmuebleViewModel;
 
 import java.util.ArrayList;
 
 public class ContratoFragment extends Fragment {
-
     private ContratoViewModel mViewModel;
     private ContratoFragmentBinding binding;
     private ContratoAdapter adapter;
@@ -50,7 +43,7 @@ public class ContratoFragment extends Fragment {
             @Override
             public void onChanged(ArrayList<Inmueble> inmuebles) {
                 binding.RVContratos.setLayoutManager(linearLayoutManager);
-                adapter=new ContratoAdapter(inmuebles,root);
+                adapter = new ContratoAdapter(inmuebles,root);
                 binding.RVContratos.setAdapter(adapter);
             }
         });
@@ -64,5 +57,4 @@ public class ContratoFragment extends Fragment {
         mViewModel = new ViewModelProvider(this).get(ContratoViewModel.class);
         // TODO: Use the ViewModel
     }
-
 }
